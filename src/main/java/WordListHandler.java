@@ -1,9 +1,11 @@
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import lombok.NoArgsConstructor;
 
 import java.io.*;
 import java.util.Scanner;
 
+@NoArgsConstructor
 public class WordListHandler {
     private Gson gson = new Gson();
     private String basePathName = "data.json";

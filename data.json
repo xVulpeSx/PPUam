@@ -1,14 +1,1 @@
-{
-  "wordList": {
-    "english": [
-      "hello",
-      "pumpkin",
-      "sadge"
-    ],
-    "polski": [
-      "siema",
-      "sadge",
-      "nara"
-    ]
-  }
-}
+{"wordList":{"english":["hello","pumpkin","sadge"],"polski":["siema","sadge","nara"],"spanish":["ola","dualipa","pumpkin"],"spinglisz":["sadge","nara","ola"]}}

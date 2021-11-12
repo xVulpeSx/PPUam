@@ -15,10 +15,12 @@ public class Menuet {
     private int count = 0;
     private List<String> listOfLanguages = new ArrayList<>();
 
-    public List<String> getLanguages(String wordToSearch){
-        List<String> result = new ArrayList<>();
+    public WordList getWordLists(){
+        return wordListHandler.getWordLists();
+    }
 
-        WordList wordLists = wordListHandler.getWordLists();
+    public List<String> searchForWordInWordList(String wordToSearch, WordList wordLists){
+        List<String> result = new ArrayList<>();
 
 //        wordLists.getWordList().entrySet().forEach(list ->{
 //            for(String word : list.getValue()){
@@ -54,7 +56,7 @@ public class Menuet {
     }
 
     private String formatString(){
-        String result = "Zapytano o " + count + " slow. znalezione jezyki to: ";
+        String result = "Zapytano:" + count + " razy. Znalezione jezyki to: ";
 
         for(String language : listOfLanguages){
             result += language + ", ";

@@ -23,7 +23,7 @@ public class Menu {
             if(option == 1){
                 System.out.println("Podaj slowo do przeszukania: ");
                 String word = new Scanner(System.in).nextLine();
-                List<String> list = makeEveryThingDone.getLanguages(word);
+                List<String> list = makeEveryThingDone.searchForWordInWordList(word, makeEveryThingDone.getWordLists());
                 if(list.isEmpty()){
                     System.out.println("Nie znaleziono");
                 }else{

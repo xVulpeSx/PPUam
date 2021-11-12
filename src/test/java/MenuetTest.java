@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,14 +12,12 @@ import static org.mockito.Mockito.*;
 
 public class MenuetTest{
 
-    WordListHandler wordListHandler = mock(WordListHandler.class);
-
-    Menuet underTest = new Menuet(wordListHandler);
+    Menuet underTest = new Menuet();
 
     WordList wordList = new WordList();
 
-    @BeforeAll
-    void beforeAll(){
+    @BeforeEach
+    public void beforeEach(){
         List<String> polski = new ArrayList<>();
         List<String> angielski = new ArrayList<>();
 
@@ -39,28 +34,33 @@ public class MenuetTest{
         wordList.setWordList(contentFromJson);
     }
 
+
     @Test
-    void testWordToSearch_noResult(){
+    public void testWordToSearch_noResult(){
         String wordToSearch = "wordToSearch";
 
-        when(wordListHandler.getWordLists()).thenReturn(wordList);
-
-        List<String> result = underTest.getLanguages(wordToSearch);
+        List<String> result = underTest.searchForWordInWordList(wordToSearch, wordList);
 
         Assertions.assertEquals(0, result.size());
     }
 
-//    @Test
-//    void testWordToSearch_resultInOneLanguage(){
-//        String wordToSearch = "piwo";
-//
-//        when(wordListHandler.getWordLists())
-//                .then((Answer<?>) wordList);
-//
-//        List<String> result = underTest.getLanguages(wordToSearch);
-//
-//        Assertions.assertEquals(1, result.size());
-//        Assertions.assertEquals("polski", result.get(0));
-//    }
+    @Test
+    void testWordToSearch_resultInOneLanguage(){
+        String wordToSearch = "piwo";
+
+        List<String> result = underTest.searchForWordInWordList(wordToSearch, wordList);
+
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals("polski", result.get(0));
+    }
+
+    @Test
+    void testWordToSearch_resultInMultipleLanguage(){
+        String wordToSearch = "common";
+
+        List<String> result = underTest.searchForWordInWordList(wordToSearch, wordList);
+
+        Assertions.assertEquals(2, result.size());
+    }
 
 }
